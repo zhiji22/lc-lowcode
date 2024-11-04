@@ -2,6 +2,7 @@ import { FC } from 'react'
 import useLoadQuestionData from '../../../hooks/useLoadQuestionData'
 import styles from './index.module.scss'
 import EditCanvas from './EditCanvas'
+import LeftPanel from './left/LeftPanel'
 
 const Edit: FC = () => {
   const { loading } = useLoadQuestionData()
@@ -11,7 +12,9 @@ const Edit: FC = () => {
       <div style={{ backgroundColor: '#fff' }}>header</div>
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
-          <div className={styles.left}>left</div>
+          <div className={styles.left}>
+            <LeftPanel />
+          </div>
           <div className={styles.main}>
             <div className={styles['canvas-wrapper']}>
               <EditCanvas loading={loading} />
