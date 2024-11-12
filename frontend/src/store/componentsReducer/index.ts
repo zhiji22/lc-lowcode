@@ -36,9 +36,30 @@ export const componentsSlice = createSlice({
     ) => {
       state.selectedId = action.payload
     },
+    // 添加新组件到画布中
+    addComponent: (
+      state: ComponentsStateType,
+      action: PayloadAction<ComponentInfoType>
+    ) => {
+      const newComponent = action.payload
+
+      const { selectedId, componentList } = state
+      // 选中组件时，插入选中组件下面；未选中则push
+      const index = componentList.findIndex((c) => c.fe_id === selectedId)
+
+      // 当前没有选中组件
+      if (index < 0) {
+        state.componentList.push(newComponent)
+      } else {
+        state.componentList.splice(index + 1, 0, newComponent)
+      }
+
+      state.selectedId = newComponent.fe_id
+    },
   },
 })
 
-export const { resetComponents, changeSelectedId } = componentsSlice.actions
+export const { resetComponents, changeSelectedId, addComponent } =
+  componentsSlice.actions
 
 export default componentsSlice.reducer

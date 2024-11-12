@@ -5,14 +5,29 @@ import {
   ComponentConfType,
 } from '../../../../components/question'
 import styles from './ComponentLib.module.scss'
+import { addComponent } from '../../../../store/componentsReducer'
+import { useDispatch } from 'react-redux'
+import { nanoid } from '@reduxjs/toolkit'
 
 const { Title } = Typography
 
 function generateComponent(c: ComponentConfType) {
-  const { title, type, Component } = c
+  const { title, type, Component, defaultProps } = c
+  const dispatch = useDispatch()
+
+  const handleAddComponent = () => {
+    dispatch(
+      addComponent({
+        fe_id: nanoid(),
+        title,
+        type,
+        props: defaultProps,
+      })
+    )
+  }
 
   return (
-    <div key={title} className={styles.wrapper}>
+    <div key={type} className={styles.wrapper} onClick={handleAddComponent}>
       <div className={styles.component}>
         <Component />
       </div>
