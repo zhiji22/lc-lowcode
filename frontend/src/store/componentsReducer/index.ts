@@ -29,6 +29,7 @@ export const componentsSlice = createSlice({
     ) => {
       return action.payload
     },
+
     // 修改selectedId
     changeSelectedId: (
       state: ComponentsStateType,
@@ -36,6 +37,7 @@ export const componentsSlice = createSlice({
     ) => {
       state.selectedId = action.payload
     },
+
     // 添加新组件到画布中
     addComponent: (
       state: ComponentsStateType,
@@ -56,10 +58,28 @@ export const componentsSlice = createSlice({
 
       state.selectedId = newComponent.fe_id
     },
+
+    // 修改组件属性
+    changeComponentProps: (
+      state: ComponentsStateType,
+      action: PayloadAction<{ fe_id: string; newProps: ComponentPropsType }>
+    ) => {
+      const { fe_id, newProps } = action.payload
+
+      // 找到当前的组件
+      const component = state.componentList.find((c) => c.fe_id === fe_id)
+      if (component) {
+        component.props = { ...component.props, ...newProps }
+      }
+    },
   },
 })
 
-export const { resetComponents, changeSelectedId, addComponent } =
-  componentsSlice.actions
+export const {
+  resetComponents,
+  changeSelectedId,
+  addComponent,
+  changeComponentProps,
+} = componentsSlice.actions
 
 export default componentsSlice.reducer

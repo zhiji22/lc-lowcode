@@ -3,6 +3,7 @@ import useLoadQuestionData from '../../../hooks/useLoadQuestionData'
 import styles from './index.module.scss'
 import EditCanvas from './EditCanvas'
 import LeftPanel from './left/LeftPanel'
+import RightPanel from './right/RightPanel'
 
 const Edit: FC = () => {
   const { loading } = useLoadQuestionData()
@@ -20,7 +21,9 @@ const Edit: FC = () => {
               <EditCanvas loading={loading} />
             </div>
           </div>
-          <div className={styles.right}>right</div>
+          <div className={styles.right}>
+            <RightPanel />
+          </div>
         </div>
       </div>
     </div>

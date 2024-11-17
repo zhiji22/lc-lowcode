@@ -1,7 +1,5 @@
 import React, { FC, useCallback } from 'react'
 import classNames from 'classnames'
-import QuestionTitle from '../../../components/question/Title/Component'
-import QuestionInput from '../../../components/question/Input/Component'
 import { Spin } from 'antd'
 import useGetComponentInfo from '../../../hooks/useGetComponentInfo'
 import { getComponentConfByType } from '../../../components/question'
@@ -17,8 +15,6 @@ type PropsType = {
 // 找到对应组件并展示
 function getComponent(componentInfo: ComponentInfoType) {
   const { type, props } = componentInfo
-
-  console.log('网络的type===', type)
 
   const componentConf = getComponentConfByType(type)
   if (componentConf == null) return
