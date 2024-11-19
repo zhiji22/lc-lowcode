@@ -4,13 +4,16 @@ import styles from './index.module.scss'
 import EditCanvas from './EditCanvas'
 import LeftPanel from './left/LeftPanel'
 import RightPanel from './right/RightPanel'
+import EditHeader from './header/EditHeader'
 
 const Edit: FC = () => {
   const { loading } = useLoadQuestionData()
 
   return (
     <div className={styles.container}>
-      <div style={{ backgroundColor: '#fff' }}>header</div>
+      <div style={{ backgroundColor: '#fff' }}>
+        <EditHeader />
+      </div>
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
           <div className={styles.left}>
